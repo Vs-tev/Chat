@@ -1,0 +1,15 @@
+.btn {
+    @apply inline-block bg-indigo-500 text-white px-5 py-3  text-sm rounded-lg uppercase tracking-wider uppercase font-semibold;
+}
+
+/* .btn:hover{
+    @apply bg-indigo-400;
+}
+
+.btn:focus{
+    @apply outline-none ring;
+}
+
+.btn:active{
+    @apply bg-indigo-600;
+} */
