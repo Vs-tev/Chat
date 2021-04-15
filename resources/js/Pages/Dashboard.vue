@@ -1,6 +1,5 @@
 <template>
     <app-layout>
-
         <div class=" max-w-7xl mx-auto px-1  sm:px-6 lg:px-8 pt-1 md:pt-8 h-screen h-screen-minus-70  md:h-screen-minus-100">
             <div class="sm:mx-10 border bg-white shadow-2xl rounded-2xl h-full">
                <div class="grid grid-cols-6 h-full">
@@ -51,7 +50,6 @@
                        </div>
 
                          <!-- messages -->
-                
                       <div ref="feed" class="overflow-y-auto h-165 bottom w-full absolute bottom-20 top-20 flex flex-col flex-no-wrap">
                           <chat-message :messages="messages" :selected_user="selected_user"></chat-message>
                       </div>
@@ -86,14 +84,6 @@
                </div>
             </div>
         </div>
-
-     <!-- <jet-button class="ml-4" >
-                    Confirm
-                </jet-button> -->
-
-
-
-
     </app-layout>
 </template>
 
@@ -133,17 +123,12 @@ export default {
   },
 
   watch: {
-    /* selected_user(val, oldVal) {
-      console.log(
-        "Prop changed: ",
-        val.conversation_id,
-        " | was: ",
-        oldVal.conversation_id
-      );
+    users(val, oldVal) {
+      console.log("changed: ", val.id, " | was: ", oldVal.id);
       if (oldVal) {
         this.disconnect(oldVal);
       }
-    }, */
+    },
 
     users() {
       this.connect();
@@ -173,7 +158,7 @@ export default {
     },
 
     disconnect(oldVal) {
-      window.Echo.leave("chat." + oldVal.conversation_id);
+      window.Echo.leave("chat." + oldVal.id);
     },
 
     scrollToBottom() {

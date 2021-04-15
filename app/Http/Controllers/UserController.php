@@ -19,7 +19,8 @@ class UserController extends Controller
         //We select all users and join conversation (with model not possible because conversations table has two user_id columns -> 'user_one' and 'user_two')
         //Then we join message to conversation and output the last message from the conversation
         
-        $user = \App\Models\User::select('users.*', 'conversations.id as conversation_id', 'conversations.user_one', 'conversations.user_two', 'messages.message as last_message' , 'messages.created_at as last_message_date' )
+        $user = \App\Models\User::select('users.*', 'conversations.id as conversation_id', 'conversations.user_one', 'conversations.user_two', 'messages.message as last_message' , 'messages.created_at as last_message_date',
+        DB::raw('COUNT(CASE WHEN conversation_id = conversations.id and is_seen = 0 and user_id != '.auth()->id().' THEN 1 else NULL END) as message_count '))
         ->withCasts(['last_message_date' => 'datetime:d M H:i'])
         ->where([['users.id' , '<>' , auth()->id()], ['users.name', 'LIKE', '%'. $request->search_user_name. '%']])
         ->leftJoin('conversations', function($join){
@@ -32,9 +33,6 @@ class UserController extends Controller
         })
         ->orderBy('messages.created_at', 'desc')
         ->groupBy('users.id' )
-        ->withCount(['message' => function(Builder $query){
-            $query->where([['is_seen', 0], ['user_id', '<>', auth()->id()]]);
-        }])
         ->get();
 
         return $user;
