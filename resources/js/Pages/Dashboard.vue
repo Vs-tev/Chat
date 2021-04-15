@@ -3,7 +3,6 @@
         <div class=" max-w-7xl mx-auto px-1  sm:px-6 lg:px-8 pt-1 md:pt-8 h-screen h-screen-minus-70  md:h-screen-minus-100">
             <div class="sm:mx-10 border bg-white shadow-2xl rounded-2xl h-full">
                <div class="grid grid-cols-6 h-full">
-                   
                    <div :class="onSmallScreen === false ? 'block' : 'hidden md:block' " class="col-span-6 block md:col-span-2 border-r w-full overflow-hidden rounded-tr-2xl md:rounded-tr-none rounded-tl-2xl">
                        <div class="p-6 bg-white h-20">
                            <input type="text" class="input w-full" placeholder="Search" v-model="search_user_name" @keyup="getUsers">
@@ -90,7 +89,6 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout";
 import Welcome from "@/Jetstream/Welcome";
-import JetButton from "@/Jetstream/Button";
 import ChatUser from "@/ChatComponents/User";
 import ChatMessage from "@/ChatComponents/Message";
 
@@ -100,7 +98,6 @@ export default {
   components: {
     AppLayout,
     Welcome,
-    JetButton,
     ChatUser,
     ChatMessage,
   },
