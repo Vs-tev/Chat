@@ -3,7 +3,7 @@
         <jet-banner />
 
         <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+            <nav class="bg-white border-b border-gray-100 hidden sm:block">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -76,10 +76,11 @@
                             <div class="ml-3 relative">
                                 <jet-dropdown align="right" width="48">
                                     <template #trigger>
+                                        
                                         <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                            <img class="h-8 w-8 rounded-full object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
+                                            <img class="h-8 w-8 rounded-full object-cover" :src="'/storage/' + $page.props.user.profile_photo_path" :alt="$page.props.user.name" />
                                         </button>
-
+                                  
                                         <span v-else class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
                                                 {{ $page.props.user.name }}
@@ -142,7 +143,7 @@
                     <div class="pt-4 pb-1 border-t border-gray-200">
                         <div class="flex items-center px-4">
                             <div v-if="$page.props.jetstream.managesProfilePhotos" class="flex-shrink-0 mr-3" >
-                                <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
+                                <img class="h-10 w-10 rounded-full object-cover" :src="'/storage/' + $page.props.user.profile_photo_path" :alt="$page.props.user.name"/>
                             </div>
 
                             <div>

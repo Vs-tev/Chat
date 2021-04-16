@@ -1,9 +1,15 @@
 <template>
     <app-layout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Profile
-            </h2>
+            <div class="flex">
+                <a :href="route('dashboard')" class="mr-4 sm:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 fill-current " width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#111827" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="5" y1="12" x2="19" y2="12"></line><line x1="5" y1="12" x2="11" y2="18"></line><line x1="5" y1="12" x2="11" y2="6"></line></svg>
+                </a>
+                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    Profile
+                </h2>
+            </div>
+           
         </template>
 
         <div>
@@ -39,25 +45,25 @@
 </template>
 
 <script>
-    import AppLayout from '@/Layouts/AppLayout'
-    import DeleteUserForm from './DeleteUserForm'
-    import JetSectionBorder from '@/Jetstream/SectionBorder'
-    import LogoutOtherBrowserSessionsForm from './LogoutOtherBrowserSessionsForm'
-    import TwoFactorAuthenticationForm from './TwoFactorAuthenticationForm'
-    import UpdatePasswordForm from './UpdatePasswordForm'
-    import UpdateProfileInformationForm from './UpdateProfileInformationForm'
+import AppLayout from "@/Layouts/AppLayout";
+import DeleteUserForm from "./DeleteUserForm";
+import JetSectionBorder from "@/Jetstream/SectionBorder";
+import LogoutOtherBrowserSessionsForm from "./LogoutOtherBrowserSessionsForm";
+import TwoFactorAuthenticationForm from "./TwoFactorAuthenticationForm";
+import UpdatePasswordForm from "./UpdatePasswordForm";
+import UpdateProfileInformationForm from "./UpdateProfileInformationForm";
 
-    export default {
-        props: ['sessions'],
+export default {
+  props: ["sessions"],
 
-        components: {
-            AppLayout,
-            DeleteUserForm,
-            JetSectionBorder,
-            LogoutOtherBrowserSessionsForm,
-            TwoFactorAuthenticationForm,
-            UpdatePasswordForm,
-            UpdateProfileInformationForm,
-        },
-    }
+  components: {
+    AppLayout,
+    DeleteUserForm,
+    JetSectionBorder,
+    LogoutOtherBrowserSessionsForm,
+    TwoFactorAuthenticationForm,
+    UpdatePasswordForm,
+    UpdateProfileInformationForm,
+  },
+};
 </script>

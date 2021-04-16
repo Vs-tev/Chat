@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'profile_photo_path' => $this->faker->randomElement(['alison.jpg', 'carlos.jpg', 'christina.jpg', 'dahiana.jpg', 'edward.jpg', 'harps.jpg', 'joseph.jpg', 'jurica.jpg', 'mason.jpg']),
+            'profile_photo_path' => $this->faker->randomElement(['profile-photos/alison.jpg', 'profile-photos/carlos.jpg', 'profile-photos/christina.jpg', 'profile-photos/dahiana.jpg', 'profile-photos/edward.jpg', 'profile-photos/harps.jpg', 'profile-photos/joseph.jpg', 'profile-photos/jurica.jpg', 'profile-photos/mason.jpg']),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];

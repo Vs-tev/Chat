@@ -2,7 +2,7 @@
     <div class="bg-own relative flex items-center sm:items-top justify-center min-h-screen sm:items-center sm:pt-0">
         <div v-if="canLogin" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             <inertia-link v-if="$page.props.user" href="/dashboard" class="text-sm text-gray-700 underline">
-                Dashboard
+                Chat
             </inertia-link>
 
             <template v-else>
@@ -28,7 +28,7 @@
             <h1 class="text-4xl sm:text-6xl -ml-4 font-bold text-white font-sans lowercase">Chat</h1>
         </div>
         <div v-if="$page.props.user" class="mt-10 text-center">
-            <a  href="/dashboard" class="text-lg px-6 py-4 hover:text-gray-300 rounded-full font-bold text-gray-50 shadow-2xl border border-gray-800">Dashboard</a> 
+            <a  href="/dashboard" class="text-lg px-6 py-4 hover:text-gray-300 rounded-full font-bold text-gray-50 shadow-2xl border border-gray-800">Chat</a> 
         </div>
         
         <div class="text-center mt-10" v-else>

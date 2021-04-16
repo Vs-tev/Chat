@@ -1,12 +1,53 @@
 <template>
     <app-layout>
-        <div class=" max-w-7xl mx-auto px-1  sm:px-6 lg:px-8 pt-1 md:pt-8 h-screen h-screen-minus-70  md:h-screen-minus-100">
+        <div class=" max-w-7xl mx-auto px-1  sm:px-6 lg:px-8 pt-1 md:pt-8 h-screen md:h-screen-minus-100">
             <div class="sm:mx-10 border bg-white shadow-2xl rounded-2xl h-full">
                <div class="grid grid-cols-6 h-full">
                    <div :class="onSmallScreen === false ? 'block' : 'hidden md:block' " class="col-span-6 block md:col-span-2 border-r w-full overflow-hidden rounded-tr-2xl md:rounded-tr-none rounded-tl-2xl">
-                       <div class="p-6 bg-white h-20">
-                           <input type="text" class="input w-full" placeholder="Search" v-model="search_user_name" @keyup="getUsers">
+                       <div class="flex items-center justify-between">
+                           <div class="pl-6 py-6 sm:pr-6 bg-white w-full h-20">
+                              <input type="text" class="input w-full" placeholder="Search" v-model="search_user_name" @keyup="getUsers">
+                           </div>
+                        <jet-dropdown align="right" width="48" class="sm:hidden">
+                          <template #trigger class="">
+                              <span class="inline-flex rounded-md">
+                                  <button type="button" class="border border-transparent mt-2 px-4 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dots-vertical" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                          <circle cx="12" cy="12" r="1" />
+                                          <circle cx="12" cy="19" r="1" />
+                                          <circle cx="12" cy="5" r="1" />
+                                        </svg>
+                                  </button>
+                              </span>
+                          </template>
+
+                          <template #content >
+                              <!-- Account Management -->
+                              <div class="block px-4 py-2 text-xs text-gray-400">
+                                  Manage Account
+                              </div>
+
+                              <jet-dropdown-link :href="route('profile.show')">
+                                  Profile
+                              </jet-dropdown-link>
+
+                              <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
+                                  API Tokens
+                              </jet-dropdown-link>
+
+                              <div class="border-t border-gray-100"></div>
+
+                              <!-- Authentication -->
+                              <form @submit.prevent="logout">
+                                  <jet-dropdown-link as="button">
+                                      Log Out
+                                  </jet-dropdown-link>
+                              </form>
+                          </template>
+                        </jet-dropdown>
                        </div>
+                     
                         <div v-if="users.length" class="py-4 overflow-auto h-90  relative ">
                             <chat-user  :last_message="last_message" :received_user_id="received_user_id" :users="users" v-on:setUser="setUser($event)"></chat-user>
                         </div>
@@ -88,18 +129,20 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout";
-import Welcome from "@/Jetstream/Welcome";
 import ChatUser from "@/ChatComponents/User";
 import ChatMessage from "@/ChatComponents/Message";
+import JetDropdown from "@/Jetstream/Dropdown";
+import JetDropdownLink from "@/Jetstream/DropdownLink";
 
 export default {
   props: ["user"],
 
   components: {
     AppLayout,
-    Welcome,
     ChatUser,
     ChatMessage,
+    JetDropdown,
+    JetDropdownLink,
   },
 
   data() {
